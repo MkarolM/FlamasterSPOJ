@@ -31,9 +31,68 @@
 //A10B16
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	string s;
+	int d, ile = 1;
+	cin >> d;
+	for (int i = 0; i < d; ++i)
+	{
+		cin >> s;
+		for (int j = 0; j < (s.length() - 1); ++j)
+		{
+			if (j == s.length() - 2)
+			{
+				if (ile > 2)
+				{
+					s[(j - ile) + 2] = '1';
+					s.replace(j - ile + 3, s.length() - j, s.substr(j + 1, s.length() - j));
+					for (int a = 0; a < (ile - 2); ++a)
+					{
+						s.pop_back();
+					}
+					cout << s;
+					j = ile - 2;
+					ile = 1;
+				}
+				else ile = 1;
+			}
+			if (s[j] == s[j + 1])
+			{
+				ile++;
+			}
+			else
+			{
+				if (ile > 2)
+				{
+					s[(j - ile) + 2] = '1';
+					s.replace(j - ile + 3, s.length() - j, s.substr(j + 1, s.length() - j));
+					for (int a = 0; a < (ile - 3); ++a)
+					{
+						s.pop_back();
+					}
+					cout << s << endl;
+					j = ile - 2;
+					ile = 1;
+				}
+				else ile = 1;
+			}
+		}
+	}
+	
+
+	//for (int i = 0; i < s.length(); ++i)
+	//{
+	//	cout << s.substr(i, s.length() - i) << endl;
+	//}
+	//cout << s.replace(1, 2, s.substr(2,2));
+	/*for (int i = 0; i < s.length(); ++i)
+	{
+		cout << s.replace(i+3-ile, s.length()-i, s.substr(i+1, s.length()-i)) << endl;
+		cout << s << endl;
+	}*/
+
 }
